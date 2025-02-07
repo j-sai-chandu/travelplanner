@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+        }
+
+        body {
+            background: url('photo/login.jpg') no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .box {
+            position: relative;
+            padding: 50px;
+            width: 360px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 6px;
+            box-shadow: 0 5px 35px rgba(0, 0, 0, 0.2);
+            margin-top: 50px;
+        }
+
+        .box::after {
+            content: "";
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            right: 5px;
+            bottom: 5px;
+            border-radius: 5px;
+            pointer-events: none;
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.1) 15%, transparent 50%, transparent 85%, rgba(255, 255, 255, 0.3) 100%);
+        }
+
+        .box .form {
+            position: relative;
+            width: 100%;
+        }
+
+        .box .form h2 {
+            color: white;
+            font-weight: 600;
+            letter-spacing: 2px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .box .form .inputBx {
+            position: relative;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        .box .form .inputBx input {
+            width: 100%;
+            outline: none;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: transparent;
+            padding: 8px 10px;
+            border-radius: 6px;
+            color: white;
+            font-size: 16px;
+            font-weight: 300;
+            box-shadow: inset 0 0 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .box .form .inputBx input::placeholder {
+            color: white;
+        }
+
+        .box .form .inputBx button {
+            background: orangered;
+            color: white;
+            padding: 8px 10px;
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+            border-radius: 6px;
+            border: none;
+            transition: background 0.3s ease;
+        }
+
+        .box .form .inputBx button:hover {
+            background: darkred;
+        }
+
+        .box .form p {
+            color: white;
+            font-weight: 300;
+            font-size: 15px;
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        .box .form p a {
+            color: white;
+            text-decoration: underline;
+        }
+
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 20px;
+            background-color: #1e1e1e;
+            color: white;
+            width: 100%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+
+        .back-button {
+            position: relative;
+            cursor: pointer;
+        }
+
+        .back-button img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .title-container {
+            display: flex;
+            align-items: center;
+            margin-left: auto;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .main-icon {
+            width: 30px;
+            height: 30px;
+            margin-right: 10px;
+        }
+
+        .wiseglobe-text {
+            font-size: 18px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+
+        .wise {
+            color: orangered;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .globe {
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        footer {
+            background-color: #000;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+            width: 100%;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        footer p {
+            font-size: 14px;
+            margin: 0;
+        }
+
+        @media screen and (max-width: 400px) {
+            .box {
+                padding: 20px;
+                width: 310px;
+            }
+        }
+        /* Specific styling for the country code dropdown */
+.box .form .inputBx select#country_code {
+    width: 100%;
+    outline: none;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: transparent;
+    padding: 8px 10px;
+    border-radius: 6px;
+    color: white;
+    font-size: 16px;
+    font-weight: 300;
+    box-shadow: inset 0 0 25px rgba(0, 0, 0, 0.2);
+    position: relative;
+    background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgdmlld0JveD0iMCAwIDE2IDE2Ij48cGF0aCBkPSJNNC41LjcwM0w3LjcyNCAzLjk1YS42MjIuNjIyIDAgMCAwIC44NDggMEwxMS41LjcwM2EuNjIuNjIgMCAwIDEgLjQyNC0uMTEuNjIuNjIgMCAwIDEtLjQyNi4xMWwtMy45NDMgMy44MzlhLjYyLjYyIDAgMCAxLS44NDggTDAgLjYwMWwtMy45NDQtMy44MzhhLjYyLjYyIDAgMCAwLS40MjQtLjEwOC42Mi42MiAwIDAgMC0uNDI0LjEwOEw0LjUgLjc1MnptMCAxMHYtLTMuNTYzbC0yLjM1NyAyLjM0YS42Mi42MiAwIDAgMC0uNDI0LjA5OS42Mi42MiAwIDAgMC0uNDI2LS4wOThMNC41IDEwLjA2MmEwLjYyLjYyIDAgMCAwIDAgLjkwNy4xNDcuMTQ3IDAgMCAwIC4wNjEtLjI0NiAwLjYyLjYyIDAgMCAwIC40MjQtLjExMkw4LjIzNCA3LjY1NWEuNjIuNjIgMCAwIDEgLjA2My0uMjQ2LjYyLjYyIDAgMCAxIC40MjQuMTEybDQuOTQzIDQuODU4LjYzMS42MjRhLjYyLjYyIDAgMCAwIC42MjMtLjQyNC42Mi42MiAwIDAgMC0uMTIxLS4zMjV6IiBmaWxsPSIjZmZmIi8+PC9zdmc+');
+    background-repeat: no-repeat;
+    background-position: calc(100% - 10px) center;
+}
+
+/* Styling for dropdown options */
+.box .form .inputBx select#country_code option {
+    color: black; /* Dropdown text color */
+    background: white; /* Dropdown background color */
+}
+/* Password input field styling */
+.inputBx {
+    position: relative;
+}
+
+.inputBx input {
+    width: calc(100% - 30px); /* Adjust width to make space for the icon */
+}
+
+/* Styling for the toggle password icon */
+.toggle-password {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    cursor: pointer;
+    font-size: 18px;
+    color: white;
+}
+
+
+    </style>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- Ensure jQuery is included -->
+</head>
+
+<body>
+    <header>
+        <div class="back-button" onclick="goBack()">
+            <img src="photo/back.jpeg" alt="Back">
+        </div>
+        <div class="title-container">
+            <img src="photo/main-icon.png" alt="Main Icon" class="main-icon">
+            <div class="wiseglobe-text">
+                <span class="wise">Travel</span><span class="globe">Planner</span>
+            </div>
+        </div>
+    </header>
+    <section>
+        <div class="box">
+            <div class="form">
+                <h2>Register Account</h2>
+                <form id="registerForm" action="register_process2.php" method="POST" novalidate>
+                    <div class="inputBx">
+                        <input type="text" name="first_name" placeholder="First Name" required>
+                    </div>
+                    <div class="inputBx">
+                        <input type="text" name="last_name" placeholder="Last Name" required>
+                    </div>
+                    <div class="inputBx">
+                        <select id="country_code" name="country_code" required>
+ <option value="+91">India (+91)</option>
+<option value="+93">Afghanistan (+93)</option>
+<option value="+355">Albania (+355)</option>
+<option value="+213">Algeria (+213)</option>
+<option value="+376">Andorra (+376)</option>
+<option value="+244">Angola (+244)</option>
+<option value="+1268">Antigua and Barbuda (+1268)</option>
+<option value="+54">Argentina (+54)</option>
+<option value="+374">Armenia (+374)</option>
+<option value="+61">Australia (+61)</option>
+<option value="+43">Austria (+43)</option>
+<option value="+994">Azerbaijan (+994)</option>
+<option value="+1-242">Bahamas (+1-242)</option>
+<option value="+973">Bahrain (+973)</option>
+<option value="+880">Bangladesh (+880)</option>
+<option value="+1-246">Barbados (+1-246)</option>
+<option value="+375">Belarus (+375)</option>
+<option value="+32">Belgium (+32)</option>
+<option value="+501">Belize (+501)</option>
+<option value="+229">Benin (+229)</option>
+<option value="+975">Bhutan (+975)</option>
+<option value="+591">Bolivia (+591)</option>
+<option value="+387">Bosnia and Herzegovina (+387)</option>
+<option value="+267">Botswana (+267)</option>
+<option value="+55">Brazil (+55)</option>
+<option value="+673">Brunei (+673)</option>
+<option value="+359">Bulgaria (+359)</option>
+<option value="+226">Burkina Faso (+226)</option>
+<option value="+257">Burundi (+257)</option>
+<option value="+238">Cabo Verde (+238)</option>
+<option value="+855">Cambodia (+855)</option>
+<option value="+237">Cameroon (+237)</option>
+<option value="+1">Canada (+1)</option>
+<option value="+236">Central African Republic (+236)</option>
+<option value="+235">Chad (+235)</option>
+<option value="+56">Chile (+56)</option>
+<option value="+86">China (+86)</option>
+<option value="+57">Colombia (+57)</option>
+<option value="+269">Comoros (+269)</option>
+<option value="+242">Congo (+242)</option>
+<option value="+506">Costa Rica (+506)</option>
+<option value="+385">Croatia (+385)</option>
+<option value="+53">Cuba (+53)</option>
+<option value="+357">Cyprus (+357)</option>
+<option value="+420">Czech Republic (+420)</option>
+<option value="+243">Republic of the Congo (+243)</option>
+<option value="+45">Denmark (+45)</option>
+<option value="+253">Djibouti (+253)</option>
+<option value="+1-767">Dominica (+1-767)</option>
+<option value="+1-809">Dominican Republic (+1-809)</option>
+<option value="+670">East Timor (+670)</option>
+<option value="+593">Ecuador (+593)</option>
+<option value="+20">Egypt (+20)</option>
+<option value="+503">El Salvador (+503)</option>
+<option value="+240">Equatorial Guinea (+240)</option>
+<option value="+291">Eritrea (+291)</option>
+<option value="+372">Estonia (+372)</option>
+<option value="+268">Eswatini (+268)</option>
+<option value="+251">Ethiopia (+251)</option>
+<option value="+679">Fiji (+679)</option>
+<option value="+358">Finland (+358)</option>
+<option value="+33">France (+33)</option>
+<option value="+241">Gabon (+241)</option>
+<option value="+220">Gambia (+220)</option>
+<option value="+995">Georgia (+995)</option>
+<option value="+49">Germany (+49)</option>
+<option value="+233">Ghana (+233)</option>
+<option value="+30">Greece (+30)</option>
+<option value="+1-473">Grenada (+1-473)</option>
+<option value="+502">Guatemala (+502)</option>
+<option value="+224">Guinea (+224)</option>
+<option value="+245">Guinea-Bissau (+245)</option>
+<option value="+592">Guyana (+592)</option>
+<option value="+509">Haiti (+509)</option>
+<option value="+504">Honduras (+504)</option>
+<option value="+36">Hungary (+36)</option>
+<option value="+354">Iceland (+354)</option>
+<option value="+62">Indonesia (+62)</option>
+<option value="+98">Iran (+98)</option>
+<option value="+964">Iraq (+964)</option>
+<option value="+353">Ireland (+353)</option>
+<option value="+972">Israel (+972)</option>
+<option value="+39">Italy (+39)</option>
+<option value="+225">Ivory Coast (+225)</option>
+<option value="+1-876">Jamaica (+1-876)</option>
+<option value="+81">Japan (+81)</option>
+<option value="+962">Jordan (+962)</option>
+<option value="+7">Kazakhstan (+7)</option>
+<option value="+254">Kenya (+254)</option>
+<option value="+686">Kiribati (+686)</option>
+<option value="+850">Korea, North (+850)</option>
+<option value="+82">Korea, South (+82)</option>
+<option value="+965">Kuwait (+965)</option>
+<option value="+996">Kyrgyzstan (+996)</option>
+<option value="+856">Laos (+856)</option>
+<option value="+371">Latvia (+371)</option>
+<option value="+961">Lebanon (+961)</option>
+<option value="+266">Lesotho (+266)</option>
+<option value="+231">Liberia (+231)</option>
+<option value="+218">Libya (+218)</option>
+<option value="+423">Liechtenstein (+423)</option>
+<option value="+370">Lithuania (+370)</option>
+<option value="+352">Luxembourg (+352)</option>
+<option value="+853">Macau (+853)</option>
+<option value="+389">North Macedonia (+389)</option>
+<option value="+261">Madagascar (+261)</option>
+<option value="+265">Malawi (+265)</option>
+<option value="+60">Malaysia (+60)</option>
+<option value="+960">Maldives (+960)</option>
+<option value="+223">Mali (+223)</option>
+<option value="+356">Malta (+356)</option>
+<option value="+692">Marshall Islands (+692)</option>
+<option value="+596">Martinique (+596)</option>
+<option value="+222">Mauritania (+222)</option>
+<option value="+230">Mauritius (+230)</option>
+<option value="+262">Mayotte (+262)</option>
+<option value="+52">Mexico (+52)</option>
+<option value="+691">Micronesia (+691)</option>
+<option value="+373">Moldova (+373)</option>
+<option value="+377">Monaco (+377)</option>
+<option value="+976">Mongolia (+976)</option>
+<option value="+382">Montenegro (+382)</option>
+<option value="+1-664">Montserrat (+1-664)</option>
+<option value="+212">Morocco (+212)</option>
+<option value="+258">Mozambique (+258)</option>
+<option value="+95">Myanmar (+95)</option>
+<option value="+264">Namibia (+264)</option>
+<option value="+674">Nauru (+674)</option>
+<option value="+977">Nepal (+977)</option>
+<option value="+31">Netherlands (+31)</option>
+<option value="+599">Netherlands Antilles (+599)</option>
+<option value="+687">New Caledonia (+687)</option>
+<option value="+64">New Zealand (+64)</option>
+<option value="+505">Nicaragua (+505)</option>
+<option value="+227">Niger (+227)</option>
+<option value="+234">Nigeria (+234)</option>
+<option value="+683">Niue (+683)</option>
+<option value="+850">Norfolk Island (+850)</option>
+<option value="+47">Norway (+47)</option>
+<option value="+968">Oman (+968)</option>
+<option value="+92">Pakistan (+92)</option>
+<option value="+680">Palau (+680)</option>
+<option value="+970">Palestinian Territories (+970)</option>
+<option value="+507">Panama (+507)</option>
+<option value="+675">Papua New Guinea (+675)</option>
+<option value="+595">Paraguay (+595)</option>
+<option value="+51">Peru (+51)</option>
+<option value="+63">Philippines (+63)</option>
+<option value="+48">Poland (+48)</option>
+<option value="+351">Portugal (+351)</option>
+<option value="+1-787">Puerto Rico (+1-787)</option>
+<option value="+974">Qatar (+974)</option>
+<option value="+262">Réunion (+262)</option>
+<option value="+40">Romania (+40)</option>
+<option value="+7">Russia (+7)</option>
+<option value="+250">Rwanda (+250)</option>
+<option value="+1-345">Cayman Islands (+1-345)</option>
+<option value="+590">Saint Barthélemy (+590)</option>
+<option value="+1-869">Saint Kitts and Nevis (+1-869)</option>
+<option value="+1-758">Saint Lucia (+1-758)</option>
+<option value="+590">Saint Martin (+590)</option>
+<option value="+1-784">Saint Vincent (+1-784)</option>
+<option value="+685">Samoa (+685)</option>
+<option value="+378">San Marino (+378)</option>
+<option value="+239">Sao Tome and Principe (+239)</option>
+<option value="+966">Saudi Arabia (+966)</option>
+<option value="+221">Senegal (+221)</option>
+<option value="+381">Serbia (+381)</option>
+<option value="+248">Seychelles (+248)</option>
+<option value="+232">Sierra Leone (+232)</option>
+<option value="+65">Singapore (+65)</option>
+<option value="+421">Slovakia (+421)</option>
+<option value="+386">Slovenia (+386)</option>
+<option value="+677">Solomon Islands (+677)</option>
+<option value="+252">Somalia (+252)</option>
+<option value="+27">South Africa (+27)</option>
+<option value="+34">Spain (+34)</option>
+<option value="+94">Sri Lanka (+94)</option>
+<option value="+249">Sudan (+249)</option>
+<option value="+597">Suriname (+597)</option>
+<option value="+47">Svalbard and Jan Mayen (+47)</option>
+<option value="+268">Eswatini (+268)</option>
+<option value="+46">Sweden (+46)</option>
+<option value="+41">Switzerland (+41)</option>
+<option value="+963">Syria (+963)</option>
+<option value="+886">Taiwan (+886)</option>
+<option value="+992">Tajikistan (+992)</option>
+<option value="+255">Tanzania (+255)</option>
+<option value="+66">Thailand (+66)</option>
+<option value="+228">Togo (+228)</option>
+<option value="+690">Tokelau (+690)</option>
+<option value="+676">Tonga (+676)</option>
+<option value="+1-868">Trinidad and Tobago (+1-868)</option>
+<option value="+216">Tunisia (+216)</option>
+<option value="+90">Turkey (+90)</option>
+<option value="+993">Turkmenistan (+993)</option>
+<option value="+1-649">Turks, Caicos Islands(+1-649)</option>
+<option value="+688">Tuvalu (+688)</option>
+<option value="+256">Uganda (+256)</option>
+<option value="+380">Ukraine (+380)</option>
+<option value="+971">United Arab Emirates (+971)</option>
+<option value="+44">United Kingdom (+44)</option>
+<option value="+1">United States (+1)</option>
+<option value="+598">Uruguay (+598)</option>
+<option value="+998">Uzbekistan (+998)</option>
+<option value="+678">Vanuatu (+678)</option>
+<option value="+379">Vatican City (+379)</option>
+<option value="+58">Venezuela (+58)</option>
+<option value="+84">Vietnam (+84)</option>
+<option value="+1-284">British Virgin Islands (+1-284)</option>
+<option value="+681">Wallis and Futuna (+681)</option>
+<option value="+967">Yemen (+967)</option>
+<option value="+260">Zambia (+260)</option>
+<option value="+263">Zimbabwe (+263)</option>
+
+                        </select>
+                    </div>
+                    
+                    <div class="inputBx">
+                        <input type="text" id="phone" name="phone" placeholder="Phone Number" required>
+                        <span id="phoneError" style="color: red; font-size: 12px; display: none;"><strong>Please enter a valid 10-digit phone number.</strong></span>
+                        <span id="phoneRegistered" style="color: red; font-size: 12px; display: none;"><strong>This phone number is already registered.</strong></span>
+                    </div>
+                    <div class="inputBx">
+                        <input type="email" id="email" name="email" placeholder="Email" required>
+                        <span id="emailError" style="color: red; font-size: 12px; display: none;"><strong>Please enter a valid Gmail address (e.g., user@gmail.com).</strong></span>
+                        <span id="emailRegistered" style="color: red; font-size: 12px; display: none;"><strong>This email is already registered.</strong></span>
+                    </div>
+                    <div class="inputBx">
+                        <input 
+                            type="text" 
+                            id="password" 
+                            name="password" 
+                            placeholder="Password" 
+                            required>
+                        <span id="togglePassword" class="toggle-password">&#128065;</span>
+                        <span id="passwordError" style="color: red; font-size: 12px; display: none;">
+                            <strong>Password must be at least 8 characters long, include one uppercase letter, one lowercase letter, one number, and one special character.</strong>
+                        </span>
+                    </div>                    
+                    
+                    <div class="inputBx">
+                        <button type="submit">Create Account</button>
+                    </div>
+                </form>
+                <p>Have an account? <a href="login.html">Login Now</a></p>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <p>&copy; 2024 All Rights Reserved</p>
+    </footer>
+
+    <script>
+        const form = document.getElementById("registerForm");
+        const phoneInput = document.getElementById("phone");
+        const emailInput = document.getElementById("email");
+        const phoneError = document.getElementById("phoneError");
+        const phoneRegistered = document.getElementById("phoneRegistered");
+        const emailError = document.getElementById("emailError");
+        const emailRegistered = document.getElementById("emailRegistered");
+        let emailIsRegistered = false; // Track if the email is registered
+    
+        // Validate phone number, email, and password on form submission
+        form.addEventListener("submit", (event) => {
+            let valid = true;
+    
+            // Validate phone number
+            const phonePattern = /^\d{10}$/;
+            if (!phonePattern.test(phoneInput.value)) {
+                phoneError.style.display = "block";
+                valid = false;
+            } else {
+                phoneError.style.display = "none";
+            }
+    
+            // Validate email format first
+            if (!validateEmailFormat(emailInput.value)) {
+                emailError.style.display = "block";
+                valid = false;
+                emailRegistered.style.display = "none"; // Hide the 'already registered' message when the format is wrong
+            } else {
+                emailError.style.display = "none";
+                // Check if the email is already registered
+                if (emailIsRegistered) {
+                    emailRegistered.style.display = "block";
+                    valid = false;
+                } else {
+                    emailRegistered.style.display = "none";
+                }
+            }
+    
+            // Validate password
+            const passwordInput = document.getElementById("password");
+            const passwordError = document.getElementById("passwordError");
+            const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    
+            if (!passwordPattern.test(passwordInput.value)) {
+                passwordError.style.display = "block";
+                valid = false;
+            } else {
+                passwordError.style.display = "none";
+            }
+    
+            // Prevent form submission if invalid
+            if (!valid) {
+                event.preventDefault();
+            }
+        });
+    
+        // Check email using AJAX (AJAX request to the server-side PHP)
+        function check_email(email) {
+            // AJAX call to check if the email exists in the database
+            $.ajax({
+                url: "check_email.php", // PHP script to handle the email check
+                method: "POST",
+                data: { email: email },
+                success: function(response) {
+                    if (response === "exists") {
+                        emailIsRegistered = true; // Set flag if email is registered
+                        emailRegistered.style.display = "block"; // Show "email already registered" message
+                    } else {
+                        emailIsRegistered = false; // Reset flag if email is not registered
+                        emailRegistered.style.display = "none"; // Hide message
+                    }
+                },
+                error: function() {
+                    emailIsRegistered = false; // Reset flag in case of AJAX failure
+                    emailRegistered.style.display = "none"; // Hide message
+                }
+            });
+        }
+    
+        // Validate email format to check for @gmail.com domain
+        function validateEmailFormat(email) {
+            const gmailPattern = /^[a-zA-Z0-9._%+-]+@gmail\.com$/; // Matches any valid Gmail address
+            return gmailPattern.test(email);
+        }
+    
+        // Check email on input change
+        emailInput.addEventListener("input", function() {
+            // First, ensure the format is valid
+            if (validateEmailFormat(emailInput.value)) {
+                // If the format is valid, check if it's already registered
+                check_email(emailInput.value);
+                emailError.style.display = "none";
+            } else {
+                emailError.style.display = "block";
+                emailRegistered.style.display = "none"; // Hide the 'already registered' message when the format is wrong
+            }
+        });
+    
+        function goBack() {
+            window.history.back();
+        }
+    
+        const passwordInput = document.getElementById("password");
+        const togglePassword = document.getElementById("togglePassword");
+    
+        togglePassword.addEventListener("click", () => {
+            // Toggle password visibility
+            const type = passwordInput.type === "text" ? "password" : "text";
+            passwordInput.type = type;
+    
+            // Change the eye icon
+            togglePassword.textContent = 
+                type === "text" ? "\u{1F441}" : "\u{1F576}";
+        });
+        let phoneIsRegistered = false; // Track if the phone number is registered
+
+// Validate phone number on form submission
+form.addEventListener("submit", (event) => {
+    let valid = true;
+
+    // Validate phone number
+    const phonePattern = /^\d{10}$/;
+    if (!phonePattern.test(phoneInput.value)) {
+        phoneError.style.display = "block";
+        valid = false;
+    } else {
+        phoneError.style.display = "none";
+    }
+
+    // Prevent form submission if invalid
+    if (!valid) {
+        event.preventDefault();
+    }
+});
+
+// Check phone number using AJAX (AJAX request to the server-side PHP)
+function check_phone(phone) {
+    // AJAX call to check if the phone number exists in the database
+    $.ajax({
+        url: "check_phone.php", // PHP script to handle the phone number check
+        method: "POST",
+        data: { phone: phone },
+        success: function(response) {
+            if (response === "exists") {
+                phoneIsRegistered = true; // Set flag if phone number is registered
+                phoneRegistered.style.display = "block"; // Show "phone number already registered" message
+            } else {
+                phoneIsRegistered = false; // Reset flag if phone number is not registered
+                phoneRegistered.style.display = "none"; // Hide message
+            }
+        },
+        error: function() {
+            phoneIsRegistered = false; // Reset flag in case of AJAX failure
+            phoneRegistered.style.display = "none"; // Hide message
+        }
+    });
+}
+
+// Check phone number on input change
+phoneInput.addEventListener("input", function() {
+    // Validate phone number format (10 digits)
+    const phonePattern = /^\d{10}$/;
+    if (phonePattern.test(phoneInput.value)) {
+        // If valid, check if the phone number is already registered
+        check_phone(phoneInput.value);
+        phoneError.style.display = "none";
+    } else {
+        phoneError.style.display = "block";
+        phoneRegistered.style.display = "none"; // Hide the 'already registered' message when the format is wrong
+    }
+});
+    </script>
+    
+</body>
+
+</html>

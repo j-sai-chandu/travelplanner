@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Travel Companion</title>
+    <link rel="stylesheet" href="categories.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #000;
+            color: #fff;
+            margin: 0;
+            padding-top: 70px; /* Space for the fixed header */
+        }
+
+        /* Header styling */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: #1e1e1e;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+        }
+
+        .title-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .main-icon {
+            width: 30px;
+            height: 30px;
+            margin-right: 10px;
+        }
+
+        .wiseglobe-text {
+            font-size: 18px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+
+        .wise {
+            color: orangered;
+        }
+
+        .globe {
+            color: white;
+        }
+
+        .back-button {
+            cursor: pointer;
+        }
+
+        .back-button img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .back-button:hover img {
+            opacity: 0.8;
+        }
+
+
+        .container {
+            text-align: center;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 30px;
+        }
+
+        .card-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .card {
+            text-decoration: none;
+            color: #fff;
+            border-radius: 10px;
+            width: 170px; /* Increased the size */
+            padding: 20px; /* Adjusted padding */
+            text-align: center;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .icon img {
+            width: 80px; /* Increased size */
+            height: 80px; /* Increased size */
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        /* Footer styling */
+        footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #1e1e1e;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+        }
+
+        footer p {
+            font-size: 14px;
+            margin: 0;
+        }
+        body {
+            padding-top: 40px; /* Reduced padding for header space */
+        }
+    
+        h1 {
+            margin-top: 2px; /* Smaller margin above the title */
+        }
+        .container {
+            margin-top: -30px; /* Ensure no additional margin at the top */
+            padding: 10px 20px;
+        }
+        /* Tooltip for back button */
+        .back-button:hover::after {
+            content: "Go Back";
+            position: absolute;
+            top: 50%;
+            left: 110%;
+            transform: translateY(-50%);
+            background-color: white;
+            color: black;
+            padding: 5px 10px;
+            font-size: 12px;
+            border-radius: 5px;
+            white-space: nowrap;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            z-index: 100;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <!-- Back Button -->
+        <div class="back-button" onclick="goBack()">
+            <img src="photo/back.jpeg" alt="Back">
+        </div>
+        <!-- Title with Main Icon -->
+        <div class="title-container">
+            <img src="photo/main-icon.png" alt="Main Icon" class="main-icon">
+            <div class="wiseglobe-text">
+                <span class="wise">Travel</span><span class="globe">Planner</span>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <h1>Select Who is Travelling with You</h1>
+        <div class="card-container">
+            <!-- Couple -->
+            <a href="couplePlaces.php" class="card" data-category="couple">
+                <div class="icon">
+                    <img src="photo/couple.png" alt="Couple">
+                </div>
+                <p>Couple</p>
+            </a>
+            <!-- Family -->
+            <a href="familyPlaces.php" class="card" data-category="family">
+                <div class="icon">
+                    <img src="photo/family.png" alt="Family">
+                </div>
+                <p>Family</p>
+            </a>
+            <!-- Friends -->
+            <a href="friendsPlaces.php" class="card" data-category="friends">
+                <div class="icon">
+                    <img src="photo/friends.png" alt="Friends">
+                </div>
+                <p>Friends</p>
+            </a>
+            <!-- Solo -->
+            <a href="soloPlaces.php" class="card" data-category="solo">
+                <div class="icon">
+                    <img src="photo/solo.png" alt="Solo">
+                </div>
+                <p>Solo</p>
+            </a>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 All Rights Reserved</p>
+    </footer>
+
+    <script>
+        // Function to navigate to the previous page
+        function goBack() {
+            window.history.back();
+        }
+
+        // Function to get query parameters from the URL
+        function getQueryParam(param) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(param);
+        }
+
+        // Get the `id` and `id1` from the previous page URL
+        const previousId = getQueryParam('id');
+        const previousId1 = getQueryParam('id1');
+
+        // Update the category cards with both `id` and `id1` from the previous page
+        document.querySelectorAll('.card').forEach(card => {
+            const category = card.getAttribute('data-category');
+            let categoryPage = '';
+
+            // Assign the correct PHP page based on the category
+            switch(category) {
+                case 'couple':
+                    categoryPage = 'couplePlaces.php';
+                    break;
+                case 'family':
+                    categoryPage = 'familyPlaces.php';
+                    break;
+                case 'friends':
+                    categoryPage = 'friendsPlaces.php';
+                    break;
+                case 'solo':
+                    categoryPage = 'soloPlaces.php';
+                    break;
+            }
+
+            // If `id` and `id1` exist, append both to the URL
+            card.href = `${categoryPage}?id=${previousId || ''}&id1=${previousId1 || ''}`;
+        });
+    </script>
+</body>
+</html>

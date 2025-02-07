@@ -1,0 +1,87 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #000;
+    color: #fff;
+}
+
+.container {
+    text-align: center;
+}
+
+h1 {
+    font-size: 32px;
+    margin-bottom: 30px;
+}
+
+.card-container {
+    display: flex;
+    gap: 30px;
+    /* Entry animation for the entire container */
+    animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.card {
+    background-color: #064d3f;
+    border-radius: 15px;
+    padding: 30px;
+    width: 150px;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: #ffffff;
+    transition: background-color 0.3s, transform 0.3s;
+    /* Initial scale for hover zoom effect */
+    transform: scale(1);
+}
+
+/* Hover effect to slightly scale up the card */
+.card:hover {
+    background-color: #056b56;
+    transform: scale(1.1);
+}
+
+.icon {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-bottom: 15px;
+    /* Apply initial rotation and transition for hover effect */
+    transition: transform 0.3s;
+}
+
+/* Rotate effect on icon when card is hovered */
+
+
+.icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+p {
+    font-size: 20px;
+}

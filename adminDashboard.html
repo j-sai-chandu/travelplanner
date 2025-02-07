@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="dashboardStyle.css">
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Travel Admin Panel</h2>
+        <button onclick="window.location.href='adminDashboard.html'">Dashboard</button>
+        <button onclick="window.location.href='adminRegistrations.php'">Registered Users</button>
+        <button onclick="window.location.href='adminListedCountries.php'">Listed Destinations</button>
+        <button onclick="window.location.href='adminProfile.php'">Admins Data</button>
+        <button onclick="window.location.href='adminReview.php'">View Feedbacks</button>
+        <button onclick="window.location.href='index.html'">Logout</button>
+    </div>
+    
+    <div class="main-content">
+        <h3>Dashboard</h3>
+        <div class="grid">
+            <div class="card">
+                <p>Registered Users</p>
+                <button onclick="window.location.href='adminRegistrations.php'">Full Details</button>
+            </div>
+            <div class="card">
+                <p>Listed Destinations</p>
+                <button onclick="window.location.href='adminListedCountries.php'">Full Details</button>
+            </div>
+            <div class="card">
+                <p>View Feedbacks</p>
+                <button onclick="window.location.href='adminReview.php'">Full Details</button>
+            </div>
+            <div class="card">
+                <p>Admins Data</p>
+                <button onclick="window.location.href='adminProfile.php'">Full Details</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WiseGlobe</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header Section with Navbar and Image Upload -->
+    <header>
+        <div class="navbar">
+            <!-- Left Side: Home -->
+            <div class="navbar">
+                <div class="left-nav">
+                    <div class="back-button">
+                        <img src="photo/main-icon.png" alt="Back">
+                    </div>
+                    <div class="wiseglobe-text">
+                        <span class="wise" id="wise">Travel</span><span class="globe">Planner</span>
+                    </div>
+                </div>
+
+                <!-- Center: About Us, Contact Us, Admin Login -->
+                <div class="center-nav">
+                </div>
+
+                <!-- Right Side: Login -->
+                <div class="right-nav">
+                    <button onclick="window.location.href='index.html'">Home</button>
+                    <button onclick="window.location.href='aboutus.html'">About Us</button>
+                    <button id="contactBtn">Contact Us</button>
+                    <button onclick="window.location.href='login.html'">Login</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h2>Welcome to TravelPlanner</h2>
+            <h3>Your Ultimate Travel Plan Maker</h3>
+            <a href="mainS1.php" class="cta-btn">Start Planning</a>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <!-- Features Section -->
+<section class="features">
+    <div class="feature">
+        <img src="photo/icon1.png" alt="Icon">
+        <h3>Ultimate flexibility</h3>
+        <p>You're in control, with free cancellation and payment options to satisfy any plan or budget.</p>
+    </div>
+    <div class="feature">
+        <img src="photo/icon2.png" alt="Icon">
+        <h3>Memorable experiences</h3>
+        <p>Browse and book tours and activities so incredible, you'll want to tell your friends.</p>
+    </div>
+    <div class="feature">
+        <img src="photo/icon3.png" alt="Icon">
+        <h3>Quality at our core</h3>
+        <p>High-quality standards. Millions of reviews. A tour company.</p>
+    </div>
+    <div class="feature">
+        <img src="photo/icon4.png" alt="Icon">
+        <h3>Award-winning support</h3>
+        <p>New plan? No problem. We're here to help, 24/7.</p>
+    </div>
+    <div class="feature">
+        <img src="photo/icon2.png" alt="Icon">
+        <h3>Expert Recommendations</h3>
+        <p>Get personalized travel recommendations based on your preferences and previous trips.</p>
+    </div>
+</section>
+
+    <!-- Famous Destinations Section -->
+    
+
+    <!-- Footer Section -->
+    <footer id="footer">
+        <div class="contact" id="contactSection">
+            <h3 style="text-align:left;">Contact Us</h3>
+            <p>Email: tourguide@gmail.com</p>
+            <p>Address: 3-29, Gandhi Nagar, Ongole, Andhra Pradesh, India.</p>
+            <p>Pin Code: 523263</p>
+            <p>Mobile: +91 7319327469</p>
+            <p>Telephone: +62 17-782 0021</p>
+        </div>
+        <div class="about" id="aboutSection">
+            <h3>Travel Planner</h3>
+            <p>your ultimate travel planning companion! We're dedicated to making your travel dreams come true by simplifying the trip planning process. Whether you're a frequent flyer, a family on vacation, or a solo adventurer, we're here to guide you every step of the way.</p>
+        </div>
+    </footer>
+    <p class="mahe">&copy; 2024 All Rights Reserved</p>
+
+    <!-- JavaScript for Smooth Scroll -->
+    <script>
+        document.getElementById("contactBtn").addEventListener("click", function() {
+            document.getElementById("contactSection").scrollIntoView({ behavior: "smooth" });
+        });
+    </script>
+</body>
+</html>

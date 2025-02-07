@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Travel Date</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #000;
+            margin: 0;
+            padding-bottom: 50px;
+        }
+
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 20px;
+            background-color: #1e1e1e;
+            color: white;
+            width: 100%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+
+        .back-button {
+            position: relative;
+            cursor: pointer;
+        }
+
+        .back-button img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .back-button:hover::after {
+            content: "Go Back";
+            position: absolute;
+            top: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #000;
+            color: #fff;
+            padding: 5px 10px;
+            font-size: 12px;
+            border-radius: 5px;
+            white-space: nowrap;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+        }
+
+        .title-container {
+            display: flex;
+            align-items: center;
+            margin-left: auto;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .main-icon {
+            width: 30px;
+            height: 30px;
+            margin-right: 10px;
+        }
+
+        .wiseglobe-text {
+            font-size: 18px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+
+        .wise {
+            color: orangered;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .globe {
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .title-container:hover::after {
+            content: "Travel Planner Logo";
+            position: absolute;
+            top: 50px;
+            right: 0;
+            background-color: #000;
+            color: #fff;
+            padding: 5px 10px;
+            font-size: 12px;
+            border-radius: 5px;
+            white-space: nowrap;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+        }
+
+        .container {
+            position: relative;
+            background-color: #073b34;
+            border-radius: 15px;
+            padding: 40px 50px;
+            width: 400px;
+            text-align: center;
+            color: #ffffff;
+            margin-top: 150px;
+        }
+
+        .container h2 {
+            font-size: 28px;
+            margin-bottom: 25px;
+        }
+
+        .date-picker {
+            display: flex;
+            align-items: center;
+            background-color: #065c50;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            padding: 15px;
+        }
+
+        .date-picker label {
+            flex-grow: 1;
+            color: #9dbdb4;
+            font-size: 16px;
+        }
+
+        .date-picker input[type="date"] {
+            background: none;
+            border: none;
+            color: #ffffff;
+            outline: none;
+            font-size: 16px;
+            width: 100%;
+        }
+
+        .search-button {
+            background-color: #3b2b2b;
+            border: none;
+            color: white;
+            padding: 10px 25px;
+            border-radius: 5px;
+            font-size: 18px;
+            cursor: pointer;
+            margin: 15px auto 0;
+            display: block;
+        }
+
+        .search-button:hover {
+            background-color: #5a3b3b;
+        }
+
+        footer {
+            background-color: #1e1e1e;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            width: 100%;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        footer p {
+            font-size: 14px;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="back-button" onclick="goBack()">
+            <img src="photo/back.jpeg" alt="Back">
+        </div>
+        <div class="title-container">
+            <img src="photo/main-icon.png" alt="Main Icon" class="main-icon">
+            <div class="wiseglobe-text">
+                <span class="wise">Travel</span><span class="globe">Planner</span>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <h2>Select Travel Date</h2>
+        <label>Select Start Date</label>
+        <div class="date-picker">
+            <input type="date" id="start-date" placeholder="Start Date">
+        </div><br>
+        <label>Select End Date</label>
+        <div class="date-picker">
+            <input type="date" id="end-date" placeholder="End Date">
+        </div><br>
+        <button class="search-button">Search</button>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 All Rights Reserved</p>
+    </footer>
+
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+
+        // Update the end date's minimum value based on the selected start date
+        const startDateInput = document.getElementById('start-date');
+        const endDateInput = document.getElementById('end-date');
+
+        startDateInput.addEventListener('change', () => {
+            const startDate = startDateInput.value;
+            if (startDate) {
+                // Set the minimum value of the end date to the selected start date
+                endDateInput.min = startDate;
+            }
+        });
+
+        document.querySelector('.search-button').addEventListener('click', () => {
+            const startDate = startDateInput.value;
+            const endDate = endDateInput.value;
+            const urlParams = new URLSearchParams(window.location.search);
+
+            const id = urlParams.get('id');
+            const id1 = urlParams.get('id1');
+
+            if (startDate && endDate) {
+                const today = new Date();
+                const currentDate = today.toISOString().split('T')[0];
+
+                if (startDate < currentDate || endDate < currentDate) {
+                    alert('Selected dates include a past date. Please choose valid future dates.');
+                    return;
+                }
+                if (startDate === currentDate || endDate === currentDate) {
+                    alert('One of the selected dates represents today. We will not show results for today.');
+                    return;
+                }
+
+                fetch(`check_dates.php?id=${id}&id1=${id1}&start_date=${startDate}&end_date=${endDate}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.isWorstMonth) {
+                            const reason = data.reason || "This is not a good time to visit this destination.";
+                            const userAction = confirm(`${reason}\n\nDo you want to view more details?`);
+
+                            if (userAction) {
+                                window.location.href = `recomendation.php?id=${id}&id1=${id1}`;
+                            } else {
+                                window.location.href = `dateSelected.html?id=${id}&id1=${id1}`;
+                            }
+                        } else {
+                            window.location.href = `categories.html?id=${id}&id1=${id1}`;
+                        }
+                    })
+                    .catch(error => console.error("Error:", error));
+            } else {
+                alert('Please select both start and end dates.');
+            }
+        });
+    </script>
+</body>
+</html>

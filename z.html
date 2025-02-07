@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Public Transport Fare Finder</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f4f4f9;
+    }
+
+    .container {
+      text-align: center;
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    form {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin: 10px 0 5px;
+    }
+
+    input {
+      width: 80%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    #results {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Public Transport Fare Finder</h1>
+    <form id="fareForm">
+      <label for="origin">Origin (lat,long):</label>
+      <input type="text" id="origin" placeholder="Enter starting lat,long" required>
+      
+      <label for="destination">Destination (lat,long):</label>
+      <input type="text" id="destination" placeholder="Enter destination lat,long" required>
+      
+      <button type="submit">Get Fare</button>
+    </form>
+    <div id="results"></div>
+  </div>
+  <script>
+    document.getElementById("fareForm").addEventListener("submit", async (event) => {
+      event.preventDefault();
+
+      const origin = document.getElementById("origin").value;
+      const destination = document.getElementById("destination").value;
+
+      const otpBaseUrl = "https://otp-instance-url/otp/routers/default/plan";
+      const resultsDiv = document.getElementById("results");
+
+      resultsDiv.innerHTML = "Fetching fare details...";
+
+      try {
+        // OpenTripPlanner API URL
+        const url = `${otpBaseUrl}?fromPlace=${origin}&toPlace=${destination}&mode=TRANSIT,WALK`;
+
+        const response = await fetch(url);
+        const data = await response.json();
+
+        if (data.plan && data.plan.itineraries) {
+          const fareDetails = data.plan.itineraries.map((itinerary) => {
+            const duration = Math.round(itinerary.duration / 60); // Convert to minutes
+            const fare = itinerary.fare ? itinerary.fare.regular.cents / 100 : "N/A";
+            return `<p>Duration: ${duration} mins, Fare: $${fare}</p>`;
+          }).join("");
+
+          resultsDiv.innerHTML = `<h3>Fare Details:</h3>${fareDetails}`;
+        } else {
+          resultsDiv.innerHTML = "<p>No fare information available.</p>";
+        }
+      } catch (error) {
+        resultsDiv.innerHTML = `<p>Error fetching fare data: ${error.message}</p>`;
+      }
+    });
+  </script>
+</body>
+</html>

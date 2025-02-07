@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Review Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #121212;
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        h2 {
+            color: #ffcc00;
+            margin-bottom: 20px;
+        }
+        form {
+            background-color: #1e1e1e;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 80%;
+            max-width: 600px;
+        }
+        label {
+            font-size: 1.2em;
+            color: #ffffff;
+        }
+        .star-rating {
+            display: flex;
+            flex-direction: row-reverse;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            justify-content: center;
+        }
+        .star-rating input[type="radio"] {
+            display: none;
+        }
+        .star-rating label {
+            color: lightgray;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        .star-rating input[type="radio"]:checked ~ label {
+            color: gold;
+        }
+        .star-rating label:hover,
+        .star-rating label:hover ~ label {
+            color: gold;
+        }
+        textarea, input[type="text"] {
+            width: 90%;
+            max-width: 600px;
+            padding: 10px;
+            background-color: #333;
+            color: #fff;
+            border: 1px solid #555;
+            border-radius: 5px;
+            font-size: 1em;
+            resize: vertical;
+            margin-bottom: 20px;
+            margin-top: 10px;
+        }
+        input[type="submit"] {
+            background-color: #2e7d32;
+            color: #ffffff;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.1em;
+            transition: background-color 0.3s;
+        }
+        input[type="submit"]:hover {
+            background-color: #1e5a26;
+        }
+        .back-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+            position: fixed;
+        }
+
+        .back-button img {
+            width: 70%;
+            height: 70%;
+            border-radius: 50%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .back-button:hover::after {
+            content: "Go Back";
+            position: absolute;
+            top: 60px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #000;
+            color: #fff;
+            padding: 5px 10px;
+            font-size: 12px;
+            border-radius: 5px;
+            white-space: nowrap;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+        }
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 20px;
+            background-color: #1e1e1e;
+            color: white;
+            width: 100%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            height: 50px;
+        }
+        .title-container {
+            display: flex;
+            align-items: center;
+            margin-left: auto;
+            position: relative;
+            cursor: pointer;
+            margin-right: 30px;
+        }
+
+        .main-icon {
+            width: 30px;
+            height: 30px;
+            margin-right: 10px;
+        }
+
+        .wiseglobe-text {
+            font-size: 18px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+
+        .wise {
+            color: orangered;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .globe {
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="back-button" onclick="goBack()">
+            <img src="../photo/back.jpeg" alt="Back">
+        </div>
+        <div class="title-container">
+            <img src="../photo/main-icon.png" alt="Main Icon" class="main-icon">
+            <div class="wiseglobe-text">
+                <span class="wise">Travel</span><span class="globe">Planner</span>
+            </div>
+        </div>
+    </header>
+
+    <h2>Leave a Review</h2>
+
+    <form action="submit_review.php" method="POST">
+        <!-- User Name Input -->
+        <label for="user_name">Your Name:</label><br>
+        <input type="text" id="user_name" name="user_name" required><br><br>
+
+        <label for="stars">Star Rating:</label>
+        <div class="star-rating">
+            <input type="radio" id="star5" name="stars" value="5"><label for="star5">★</label>
+            <input type="radio" id="star4" name="stars" value="4"><label for="star4">★</label>
+            <input type="radio" id="star3" name="stars" value="3"><label for="star3">★</label>
+            <input type="radio" id="star2" name="stars" value="2"><label for="star2">★</label>
+            <input type="radio" id="star1" name="stars" value="1"><label for="star1">★</label>
+        </div>
+
+        <label for="experience">Your Experience:</label><br>
+        <textarea id="experience" name="experience" rows="4" cols="50" required></textarea>
+        <br><br>
+
+        <input type="submit" value="Submit Review">
+    </form>
+
+    <script>
+        window.onload = async function () {
+            const urlParams = new URLSearchParams(window.location.search);
+            const id1 = urlParams.get('id1');
+            
+            if (id1) {
+                try {
+                    const response = await fetch(`fetch_user.php?id1=${id1}`);
+                    const data = await response.json();
+
+                    if (data.first_name && data.last_name) {
+                        document.getElementById("user_name").value = `${data.first_name} ${data.last_name}`;
+                        document.getElementById("user_name").readOnly = true;
+
+                        const form = document.querySelector('form');
+                        form.action = form.action + `?id1=${id1}`;
+                    }
+                } catch (error) {
+                    console.error("Error fetching user data:", error);
+                }
+            } else {
+                // Allow user to input their name
+                document.getElementById("user_name").readOnly = false;
+            }
+        };
+
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+</body>
+</html>

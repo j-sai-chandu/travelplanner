@@ -1,0 +1,94 @@
+/* adminAddCountry.css */
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f3f3f3;
+}
+
+.form-container {
+    max-width: 600px;
+    margin: 50px auto;
+    background: white;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    position: relative;
+    line-height: 50px;
+}
+
+.go-back {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.go-back img {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}
+
+h2 {
+    text-align: center;
+    color: #333;
+}
+
+h3,h4 {
+    color: #666;
+    margin-top: 20px;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="file"],
+button {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+button {
+    background-color: #333;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #555;
+}
+
+.months-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.month-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    width: 48%;
+}
+
+.include-container {
+    margin-top: 20px;
+}
+
+.include-container h4 {
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.include-container input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
